@@ -2,7 +2,7 @@
 
 ![Demo](demo.png)
 
-Shows pocket version of portal details in bottom right / upper center.
+Shows pocket version of portal details on the bottom right / top center.
 
 [Original version by Zaso](https://www.giacintogarcea.com/ingress/iitc/pocket-portal-details-by-zaso.user.js)
 
