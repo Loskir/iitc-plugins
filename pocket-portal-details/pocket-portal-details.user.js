@@ -3,7 +3,7 @@
 // @id             iitc-plugin-pocket-portal-details
 // @name           IITC plugin: Pocket Portal Details
 // @category       Portal Info
-// @version        0.0.6
+// @version        0.0.6.1
 // @updateURL      https://raw.githubusercontent.com/Loskir/iitc-plugins/master/pocket-portal-details/pocket-portal-details.meta.js
 // @downloadURL    https://raw.githubusercontent.com/Loskir/iitc-plugins/master/pocket-portal-details/pocket-portal-details.user.js
 // @description    Append a pocket box containing some restricted details of the selected portal.
@@ -123,18 +123,13 @@ function wrapper(){
   }
 
   window.plugin.pocketPortalDetails.util.generateHTMLTableTips = function(obj){
-    var titleTips = '';
-    var html = '';
+    let html = ''
 
-    for(key in obj){
+    for (let key of Object.keys(obj)){
       html += '<tr><td><span style=\'color:#fff;\'>'+key+'</span></td><td>'+obj[key]+'</td></tr>';
     }
 
-    if(html !== ''){
-      titleTips = '<table class=\'ppdTable\'><tbody>'+html+'</tbody></table>';
-    }
-
-    return titleTips;
+    return html !== '' ? `<table class='ppdTable'><tbody>${html}</tbody></table>` : ''
   }
 
   // -----------------------------------------------------------------
@@ -278,11 +273,11 @@ function wrapper(){
     // --------------------------
     var tableObjPortal = {
       'Title': window.plugin.pocketPortalDetails.util.escapeHTML(title),
-      'Owner': '<span style=\'color:'+colorTeam+'\'>'+owner+'</span>',
-      'Level': '<span style=\'padding:0 2px;color:#fff;background-color:'+window.COLORS_LVL[lvl]+'\'>L'+lvl+'</span> ('+lvlFloat+')'
+      'Owner': `<span style='color:${colorTeam}'>${owner}</span>`,
+      'Level': `<span style='padding:0 2px;color:#fff;background-color:${window.COLORS_LVL[lvl]}'>L${lvl}</span> (${lvlFloat})`
     };
     var tableObjResonators = {};
-    for(var i in d.resonators){
+    for(var i of Object.keys(d.resonators)){
       var rColorLVL = window.COLORS_LVL[d.resonators[i].level];
       var rLVL = d.resonators[i].level;
       var rStyle = 'background-color:'+rColorLVL+';padding:0 2px;color:#fff;';
@@ -293,8 +288,8 @@ function wrapper(){
       var fillGrade = d.resonators[i].energy/maxNrg*100;
       var rNrgPerc = Math.round(fillGrade);
 
-      var key = '<span data-ppd=\''+i+'\' style=\'color:rgb(255,'+parseInt(2.55*rNrgPerc)+','+parseInt(2.55*rNrgPerc)+') !important;\'><b>'+rNrgPerc+'%</b></span>';
-      tableObjResonators[key] = '<span style=\''+rStyle+'\'>L'+rLVL+'</span> <span style=\''+cPlayer+'\'>'+rOwner+'</span>';
+      var key = `<span data-ppd='${i}' style='color:rgb(255,${Math.floor(2.55 * rNrgPerc)},${Math.floor(2.55 * rNrgPerc)}) !important;'><b>${rNrgPerc}%</b></span>`;
+      tableObjResonators[key] = `<span style='${rStyle}'>L${rLVL}</span> <span style='${cPlayer}'>${rOwner}</span>`;
     }
     var tableObjMods = {};
     for(var i in d.mods){
@@ -318,23 +313,23 @@ function wrapper(){
     var t = '';
     t += `<div title="${titleTips}">`;
     t += '<div class="header">';
-    t += '<span class="portalHeader" '+cl+'>';
+    t += `<span class="portalHeader" ${cl}>`;
 //					t += '<span class="imgpreview" '+img+'></span> ';
-    t += '<span class="portalLevel"'+colorLevel+'>L'+lvl+'</span> ';
-    t += '<span class="portalTitle '+factionClass+'">'+title+'</span>';
+    t += `<span class="portalLevel"${colorLevel}>L${lvl}</span> `;
+    t += `<span class="portalTitle ${factionClass}">${title}</span>`;
     t += '</span>';
-    t += '<span class="moveButton" title="Move box" onclick="window.plugin.pocketPortalDetails.toggleBoxPosition();return false;">&lrarr;</span>';
-    t += '<span class="closeButton" title="Deselect Portal" onclick="renderPortalDetails(null);">X</span>';
+    t += '<span class="moveButton" onclick="window.plugin.pocketPortalDetails.toggleBoxPosition();return false;" title="Move box">&lrarr;</span>';
+    t += '<span class="closeButton" onclick="renderPortalDetails(null);" title="Deselect Portal">X</span>';
     t += '<div style="clear:both;"></div>';
     t += '</div>';
 
-    t += '<div class="content" '+cl+'>';
-    t += '<div class="column left">'+window.plugin.pocketPortalDetails.getHTMLResonators(data)+'</div>';
-    t += '<div class="column right">'+window.plugin.pocketPortalDetails.getHTMLMods(data)+'</div>';
+    t += `<div class="content" ${cl}>`;
+    t += `<div class="column left">${window.plugin.pocketPortalDetails.getHTMLResonators(data)}</div>`;
+    t += `<div class="column right">${window.plugin.pocketPortalDetails.getHTMLMods(data)}</div>`;
     t += '<div class="column large infoData">';
-    t += '<span>Links: <i>'+linksGuid.in.length+' in / '+linksGuid.out.length+' out</i></span> &bull; ';
-    t += '<span>Fields: <i>'+fieldCount+'</i></span> &bull; ';
-    t += '<span>Mitig: <i>'+mitig[1]+'</i></span>';
+    t += `<span>Links: <i>${linksGuid.in.length} in / ${linksGuid.out.length} out</i></span> &bull; `;
+    t += `<span>Fields: <i>${fieldCount}</i></span> &bull; `;
+    t += `<span>Mitig: <i>${mitig[1]}</i></span>`;
     t += '</div>';
     t += '</div>';
     t += '</div>';
