@@ -1,7 +1,7 @@
 // ==UserScript==
 // @author         Loskir
-// @id             iitc-plugin-quarantine-changes
-// @name           IITC plugin: Quarantine changes [2020]
+// @id             iitc-plugin-lockdown-changes
+// @name           IITC plugin: Lockdown changes [2020]
 // @description    Hacks before burnout 4→16, cooldown 300s→90s
 // @category       Tweaks
 // @version        1.0.0
