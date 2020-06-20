@@ -3,7 +3,7 @@
 // @id             iitc-plugin-pocket-portal-details
 // @name           IITC plugin: Pocket Portal Details
 // @category       Portal Info
-// @version        0.0.5
+// @version        0.0.6
 // @updateURL      https://raw.githubusercontent.com/Loskir/iitc-plugins/master/pocket-portal-details/pocket-portal-details.meta.js
 // @downloadURL    https://raw.githubusercontent.com/Loskir/iitc-plugins/master/pocket-portal-details/pocket-portal-details.user.js
 // @description    Append a pocket box containing some restricted details of the selected portal.
@@ -116,7 +116,7 @@ function wrapper(){
     var title = '';
 
     if(d.title){
-      title = window.plugin.pocketPortalDetails.util.escapeHTML(d.title);
+      title = d.title;
     }
 
     return title;
@@ -277,7 +277,7 @@ function wrapper(){
     // HTML TOOLTIP
     // --------------------------
     var tableObjPortal = {
-      'Title': title,
+      'Title': window.plugin.pocketPortalDetails.util.escapeHTML(title),
       'Owner': '<span style=\'color:'+colorTeam+'\'>'+owner+'</span>',
       'Level': '<span style=\'padding:0 2px;color:#fff;background-color:'+window.COLORS_LVL[lvl]+'\'>L'+lvl+'</span> ('+lvlFloat+')'
     };
@@ -316,30 +316,28 @@ function wrapper(){
     // HTML CONTAINER
     // --------------------------
     var t = '';
-    if(0 == 0){
-      t += '<div title="'+titleTips+'">';
-      t += '<div class="header">';
-      t += '<span class="portalHeader" '+cl+'>';
+    t += `<div title="${titleTips}">`;
+    t += '<div class="header">';
+    t += '<span class="portalHeader" '+cl+'>';
 //					t += '<span class="imgpreview" '+img+'></span> ';
-      t += '<span class="portalLevel"'+colorLevel+'>L'+lvl+'</span> ';
-      t += '<span class="portalTitle '+factionClass+'">'+title+'</span>';
-      t += '</span>';
-      t += '<span class="moveButton" title="Move box" onclick="window.plugin.pocketPortalDetails.toggleBoxPosition();return false;">&lrarr;</span>';
-      t += '<span class="closeButton" title="Deselect Portal" onclick="renderPortalDetails(null);">X</span>';
-      t += '<div style="clear:both;"></div>';
-      t += '</div>';
+    t += '<span class="portalLevel"'+colorLevel+'>L'+lvl+'</span> ';
+    t += '<span class="portalTitle '+factionClass+'">'+title+'</span>';
+    t += '</span>';
+    t += '<span class="moveButton" title="Move box" onclick="window.plugin.pocketPortalDetails.toggleBoxPosition();return false;">&lrarr;</span>';
+    t += '<span class="closeButton" title="Deselect Portal" onclick="renderPortalDetails(null);">X</span>';
+    t += '<div style="clear:both;"></div>';
+    t += '</div>';
 
-      t += '<div class="content" '+cl+'>';
-      t += '<div class="column left">'+window.plugin.pocketPortalDetails.getHTMLResonators(data)+'</div>';
-      t += '<div class="column right">'+window.plugin.pocketPortalDetails.getHTMLMods(data)+'</div>';
-      t += '<div class="column large infoData">';
-      t += '<span>Links: <i>'+linksGuid.in.length+' in / '+linksGuid.out.length+' out</i></span> &bull; ';
-      t += '<span>Fields: <i>'+fieldCount+'</i></span> &bull; ';
-      t += '<span>Mitig: <i>'+mitig[1]+'</i></span>';
-      t += '</div>';
-      t += '</div>';
-      t += '</div>';
-    }
+    t += '<div class="content" '+cl+'>';
+    t += '<div class="column left">'+window.plugin.pocketPortalDetails.getHTMLResonators(data)+'</div>';
+    t += '<div class="column right">'+window.plugin.pocketPortalDetails.getHTMLMods(data)+'</div>';
+    t += '<div class="column large infoData">';
+    t += '<span>Links: <i>'+linksGuid.in.length+' in / '+linksGuid.out.length+' out</i></span> &bull; ';
+    t += '<span>Fields: <i>'+fieldCount+'</i></span> &bull; ';
+    t += '<span>Mitig: <i>'+mitig[1]+'</i></span>';
+    t += '</div>';
+    t += '</div>';
+    t += '</div>';
 
     return t;
   }
