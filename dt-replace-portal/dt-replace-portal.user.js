@@ -3,7 +3,7 @@
 // @name           IITC plugin: Draw Tools Replace Portal
 // @description    Quickly replace one portal with another in Draw Tools
 // @category       Info
-// @version        1.0.2
+// @version        1.0.3
 // @updateURL      https://raw.githubusercontent.com/Loskir/iitc-plugins/master/dt-replace-portal/dt-replace-portal.meta.js
 // @downloadURL    https://raw.githubusercontent.com/Loskir/iitc-plugins/master/dt-replace-portal/dt-replace-portal.user.js
 // @include        https://*.ingress.com/intel*
@@ -73,7 +73,11 @@ function wrapper(plugin_info) {
     }
 
     function draw() {
-      const dt = window.plugin.drawToolsPlus || window.plugin.drawTools
+      const dt = window.plugin.drawToolsPlus
+      
+      if (!dt) {
+        return alert('This plugin requires Draw Tools Plus by Zaso (https://www.giacintogarcea.com/ingress/iitc/draw-tools-plus-by-zaso.user.js), please install it')
+      }
 
       const fromLL = firstPortal.ll
       const toLL = secondPortal.ll
