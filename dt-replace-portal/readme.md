@@ -5,3 +5,5 @@
 ![Demo](demo.gif)
 
 Easily move all the links you drew from one portal to another. Great for creating plans.
+
+Requires [Draw Tools Plus](https://www.giacintogarcea.com/ingress/iitc/draw-tools-plus-by-zaso.user.js) by Zaso
