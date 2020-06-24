@@ -3,7 +3,7 @@
 // @name           IITC plugin: Draw Tools Replace Portal
 // @description    Quickly replace one portal with another in Draw Tools
 // @category       Info
-// @version        1.0.4
+// @version        1.0.5
 // @updateURL      https://raw.githubusercontent.com/Loskir/iitc-plugins/master/dt-replace-portal/dt-replace-portal.meta.js
 // @downloadURL    https://raw.githubusercontent.com/Loskir/iitc-plugins/master/dt-replace-portal/dt-replace-portal.user.js
 // @include        https://*.ingress.com/intel*
@@ -85,6 +85,7 @@ function wrapper(plugin_info) {
       dt.drawnItems.clearLayers()
       dt.import(JSON.parse(window.localStorage['plugin-draw-tools-layer']
         .replace(new RegExp(`"lat":${fromLL.lat},"lng":${fromLL.lng}`, 'g'), `"lat":${toLL.lat},"lng":${toLL.lng}`)))
+      dt.save()
 
       firstPortal = null
       secondPortal = null
