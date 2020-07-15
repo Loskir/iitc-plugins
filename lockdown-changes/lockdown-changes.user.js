@@ -4,7 +4,7 @@
 // @name           IITC plugin: Lockdown changes [2020]
 // @description    Hacks before burnout 4→16, cooldown 300s→90s
 // @category       Tweaks
-// @version        1.0.1
+// @version        1.0.2
 // @updateURL      https://raw.githubusercontent.com/Loskir/iitc-plugins/master/lockdown-changes/lockdown-changes.meta.js
 // @downloadURL    https://raw.githubusercontent.com/Loskir/iitc-plugins/master/lockdown-changes/lockdown-changes.user.js
 // @include        https://*.ingress.com/intel*
@@ -27,31 +27,30 @@ function wrapper(plugin_info) {
   //END PLUGIN AUTHORS NOTE
 
   // PLUGIN START ////////////////////////////////////////////////////////
+  const setup = () => {
+    window.getPortalHackDetails = function(d) {
+      var heatsinks = getPortalModsByType(d, 'HEATSINK');
+      var multihacks = getPortalModsByType(d, 'MULTIHACK');
 
-  window.getPortalHackDetails = function(d) {
+      // first mod of type is fully effective, the others are only 50% effective
+      var effectivenessReduction = [ 1, 0.5, 0.5, 0.5 ];
 
-    var heatsinks = getPortalModsByType(d, 'HEATSINK');
-    var multihacks = getPortalModsByType(d, 'MULTIHACK');
+      var cooldownTime = 90;
 
-    // first mod of type is fully effective, the others are only 50% effective
-    var effectivenessReduction = [ 1, 0.5, 0.5, 0.5 ];
+      $.each(heatsinks, function(index,mod) {
+        var hackSpeed = parseInt(mod.stats.HACK_SPEED)/1000000;
+        cooldownTime = Math.round(cooldownTime * (1 - hackSpeed * effectivenessReduction[index]));
+      });
 
-    var cooldownTime = 90;
+      var numHacks = 16;
 
-    $.each(heatsinks, function(index,mod) {
-      var hackSpeed = parseInt(mod.stats.HACK_SPEED)/1000000;
-      cooldownTime = Math.round(cooldownTime * (1 - hackSpeed * effectivenessReduction[index]));
-    });
+      $.each(multihacks, function(index,mod) {
+        var extraHacks = parseInt(mod.stats.BURNOUT_INSULATION);
+        numHacks = numHacks + (extraHacks * effectivenessReduction[index]);
+      });
 
-    var numHacks = 16;
-
-    $.each(multihacks, function(index,mod) {
-      var extraHacks = parseInt(mod.stats.BURNOUT_INSULATION);
-      numHacks = numHacks + (extraHacks * effectivenessReduction[index]);
-    });
-
-    return {cooldown: cooldownTime, hacks: numHacks, burnout: cooldownTime*(numHacks-1)};
-  }
+      return {cooldown: cooldownTime, hacks: numHacks, burnout: cooldownTime*(numHacks-1)};
+    }}
   // PLUGIN END //////////////////////////////////////////////////////////
 
   setup.info = plugin_info; //add the script info data to the function as a property
