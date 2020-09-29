@@ -2,9 +2,9 @@
 // @author         Loskir
 // @id             iitc-plugin-lockdown-changes
 // @name           IITC plugin: Lockdown changes [2020]
-// @description    Hacks before burnout 4→16, cooldown 300s→90s
+// @description    Cooldown 300s→90s
 // @category       Tweaks
-// @version        1.0.2
+// @version        1.0.3
 // @updateURL      https://raw.githubusercontent.com/Loskir/iitc-plugins/master/lockdown-changes/lockdown-changes.meta.js
 // @downloadURL    https://raw.githubusercontent.com/Loskir/iitc-plugins/master/lockdown-changes/lockdown-changes.user.js
 // @include        https://*.ingress.com/intel*
@@ -42,7 +42,7 @@ function wrapper(plugin_info) {
         cooldownTime = Math.round(cooldownTime * (1 - hackSpeed * effectivenessReduction[index]));
       });
 
-      var numHacks = 16;
+      var numHacks = 4;
 
       $.each(multihacks, function(index,mod) {
         var extraHacks = parseInt(mod.stats.BURNOUT_INSULATION);
