@@ -3,7 +3,7 @@
 // @name           IITC plugin: Draw Tools Replace Portal
 // @description    Quickly replace one portal with another in Draw Tools
 // @category       Info
-// @version        1.0.6
+// @version        1.0.7
 // @updateURL      https://raw.githubusercontent.com/Loskir/iitc-plugins/master/dt-replace-portal/dt-replace-portal.meta.js
 // @downloadURL    https://raw.githubusercontent.com/Loskir/iitc-plugins/master/dt-replace-portal/dt-replace-portal.user.js
 // @match          https://intel.ingress.com/*
@@ -118,7 +118,7 @@ function wrapper(plugin_info) {
       button.title = 'Draw tools: Replace portal';
 
       toolbar = document.createElement("div");
-      toolbar.className = "leaflet-draw-toolbar leaflet-bar";
+      toolbar.className = "leaflet-bar";
       toolbar.appendChild(button);
 
       clearLink = document.createElement("a");
