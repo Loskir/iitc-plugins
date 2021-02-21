@@ -10,14 +10,9 @@
 // ==/UserScript==
 
 function wrapper(plugin_info) {
-  //PLUGIN AUTHORS: writing a plugin outside of the IITC build environment? if so, delete these lines!!
-  //(leaving them in place might break the 'About IITC' page or break update checks)
-  //plugin_info.buildName = 'iitc';
-  //plugin_info.dateTimeVersion = '20170108.21732';
-  //plugin_info.pluginId = 'multidraw';
-  //END PLUGIN AUTHORS NOTE
+  // ensure plugin framework is there, even if iitc is not yet loaded
+  if(typeof window.plugin !== 'function') window.plugin = function() {};
 
-  // PLUGIN START ////////////////////////////////////////////////////////
   var firstPortalLink, secondPortalLink;
 
   var setup = (function (window, undefined) {
