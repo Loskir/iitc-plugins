@@ -3,7 +3,7 @@
 // @name           IITC plugin: Multi draw
 // @description    Draw multiple links
 // @category       Layer
-// @version        0.1.4
+// @version        0.1.5
 // @downloadURL    https://raw.githubusercontent.com/Loskir/iitc-plugins/master/multi-draw/multi-draw.user.js
 // @match          https://intel.ingress.com/*
 // @grant          none
@@ -141,10 +141,10 @@ function wrapper(plugin_info) {
       button = document.createElement("a");
       button.className = "leaflet-multidraw-edit-edit";
       button.addEventListener("click", toggleMenu, false);
-      button.title = 'Draw multi links';
+      button.title = 'Multi draw';
 
       toolbar = document.createElement("div");
-      toolbar.className = "leaflet-draw-toolbar leaflet-bar";
+      toolbar.className = "leaflet-bar";
       toolbar.appendChild(button);
 
       clearLink = document.createElement("a");
