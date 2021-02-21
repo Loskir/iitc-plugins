@@ -2,9 +2,9 @@
 // @author         kewwwa
 // @name           IITC plugin: Multi draw
 // @description    Draw multiple links
-// @category       Layer
+// @category       Draw
 // @version        0.1.5
-// @downloadURL    https://raw.githubusercontent.com/Loskir/iitc-plugins/master/multi-draw/multi-draw.user.js
+// @downloadURL    https://github.com/Loskir/iitc-plugins/raw/master/multi-draw/multi-draw.user.js
 // @match          https://intel.ingress.com/*
 // @grant          none
 // ==/UserScript==
