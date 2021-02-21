@@ -1,6 +1,8 @@
 # Pocket Portal Details
 
-### [Install](https://github.com/Loskir/iitc-plugins/raw/master/pocket-portal-details/pocket-portal-details.user.js)
+### Deprecated, use the one from [ZasoItems.CE](https://github.com/MysticJay/ZasoItems.CE)
+
+### [~~Install~~](https://github.com/Loskir/iitc-plugins/raw/master/pocket-portal-details/pocket-portal-details.user.js)
 
 ![Demo](demo.png)
 
